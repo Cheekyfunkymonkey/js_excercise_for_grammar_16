@@ -11,35 +11,34 @@
 //   - MDN : fetch
 //     - https://developer.mozilla.org/ja/docs/Web/API/WindowOrWorkerGlobalScope/fetch
 
-const MULTIPLE_API_URL = "https://opentdb.com/api.php?amount=10&type=multiple";
-const BOOLEAN_API_URL = "https://opentdb.com/api.php?amount=10&type=boolean";
+const END_POINT = "https://opentdb.com/api.php?amount=10";
 
 class QuizFetcher {
   static fetchMultipleQuizData() {
-    const quizDataMulti = fetch(MULTIPLE_API_URL)
+    const url = `${END_POINT}&type=multiple`;
+    return fetch(url)
       .then(response => {
         return response.json();
       })
       .then(data => {
-        return data.results;
+        console.log("課題２の解答：", data.results);
       });
-    return quizDataMulti;
   }
 
   static fetchTrueOrFalseQuizData() {
-    const quizDataBoolean = fetch(BOOLEAN_API_URL)
+    const url = `${END_POINT}&type=boolean`;
+    return fetch(url)
       .then(response => {
         return response.json();
       })
       .then(data => {
-        return data.results;
+        console.log("課題３の解答：", data.results);
       });
-    return quizDataBoolean;
   }
 }
 
 // 課題2: fetchMultipleQuizDataメソッドを実行してAPIの結果に含まれるresultsプロパティの値をconsole.logで出力する
-console.log("課題２の解答：", QuizFetcher.fetchMultipleQuizData());
+QuizFetcher.fetchMultipleQuizData();
 
 // 課題3: fetchTrueOrFalseQuizDataメソッドを実行してAPIの結果に含まれるresultsプロパティの値をconsole.logで出力する
-console.log("課題３の解答：", QuizFetcher.fetchTrueOrFalseQuizData());
+QuizFetcher.fetchTrueOrFalseQuizData();
